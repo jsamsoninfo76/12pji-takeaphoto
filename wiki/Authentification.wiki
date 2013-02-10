@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary Page authentification permettant a l'utilisateur de se connecter a son compte
 #labels Authentification,PJI,Lille1,Android
 
 = Introduction =
