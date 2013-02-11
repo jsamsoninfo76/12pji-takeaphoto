@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">PJI_Auth</string>
+    <string name="app_name">HelloGoogleMap</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
-    <string name="username">Username</string>
-    <string name="password">Password</string>
-	<string name="valider">Valider</string>
+    <string name="title_activity_hello_google_map">HelloGoogleMapActivity</string>
+    <string name="mapKey">0veDtSa79HFiEYyNaiHdepSZERLnivphBLG51Zw</string>
+
 </resources>
