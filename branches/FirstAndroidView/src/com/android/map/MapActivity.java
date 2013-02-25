@@ -1,12 +1,18 @@
 
 package com.android.map;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.widget.Toast;
 
 /**
  * This shows how to create a simple activity with a map and a marker on the map.
@@ -14,17 +20,25 @@ import android.os.Bundle;
  * Notice how we deal with the possibility that the Google Play services APK is not
  * installed/enabled/updated on a user's device.
  */
-public class MapActivity extends android.support.v4.app.FragmentActivity {
+public class MapActivity extends android.support.v4.app.FragmentActivity implements LocationListener {
     /**
      * Note that this may be null if the Google Play services APK is not available.
      */
-    private GoogleMap mMap;
+	private LocationManager locationManager;
+    private GoogleMap gMap;
+    private Marker marker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         setUpMapIfNeeded();
+        locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
+        
+        //Si le GPS est disponible, on s'y abonne
+        if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            abonnementGPS();
+        }
     }
 
     @Override
@@ -41,33 +55,15 @@ public class MapActivity extends android.support.v4.app.FragmentActivity {
 
     private void setUpMapIfNeeded() {
         // Do a null check to confirm that we have not already instantiated the map.
-        if (mMap == null) {
+        if (gMap == null) {
             // Try to obtain the map from the SupportMapFragment.
-            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
+            gMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
                     .getMap();
+            gMap.setMyLocationEnabled(true);
         }
     }
-    
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void onResume() {
-        super.onResume();
+
  
-        //Obtention de la référence du service
-        locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
- 
-        //Si le GPS est disponible, on s'y abonne
-        if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            abonnementGPS();
-        }
-    }
- 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void onPause() {
         super.onPause();
  
@@ -91,10 +87,6 @@ public class MapActivity extends android.support.v4.app.FragmentActivity {
         locationManager.removeUpdates(this);
     }
  
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void onLocationChanged(final Location location) {
         //On affiche dans un Toat la nouvelle Localisation
         final StringBuilder msg = new StringBuilder("lat : ");
