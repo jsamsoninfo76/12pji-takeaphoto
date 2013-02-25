@@ -3,6 +3,7 @@
 
 = Introduction =
 
+Android 3.0, or Honeycomb, came with some fundamental user interface changes, most notably in the form of the Fragment API. When you were reading the last tutorial on how to use fragments, you were probably thinking, “Wow, this is great, but I can’t use any of this because I need to target more than just the Motorola Xoom, the only Android 3.0 device currently on the market.” Luckily for all of us developers, Google has released a library called the Android Compatibility package. This package provides support for the Fragment API as well as other key new features to devices as far back as Android 1.6. As of this writing, that covers 97% of all Android devices actively accessing the Android Market. Learn how to use it in this quick tip.
 
 = Details =
 
@@ -12,3 +13,4 @@
   * http://www.androidhive.info/2011/08/android-tab-layout-tutorial/
   * http://www.android-dev.fr/web/blog/voir/129?titre=Tab-Android-premi%C3%A8re-version-Partie-1-XML&PHPSESSID=5kcdkd8fp5tdulltc2793kv0c3
   * http://www.android-dev.fr/web/blog/voir/130?titre=Tab-Android-premi%C3%A8re-version-Partie-2-JAVA&PHPSESSID=5kcdkd8fp5tdulltc2793kv0c3
+  * http://mobile.tutsplus.com/tutorials/android/android-sdk_fragments/
