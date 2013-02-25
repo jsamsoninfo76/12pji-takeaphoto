@@ -1,18 +1,19 @@
 
 package com.android.map;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.EditText;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
-import android.widget.Toast;
 
 /**
  * This shows how to create a simple activity with a map and a marker on the map.
@@ -20,37 +21,80 @@ import android.widget.Toast;
  * Notice how we deal with the possibility that the Google Play services APK is not
  * installed/enabled/updated on a user's device.
  */
-public class MapActivity extends android.support.v4.app.FragmentActivity implements LocationListener {
+public class MapActivity extends android.support.v4.app.FragmentActivity {
     /**
      * Note that this may be null if the Google Play services APK is not available.
      */
-	private LocationManager locationManager;
     private GoogleMap gMap;
-    private Marker marker;
-
+    private Intent intent ;
+    final Context context = this ;
+    final String EXTRA_LOGIN = "user_login";
+    MarkerOptions markerOptions = new MarkerOptions();
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+        intent = getIntent();
+
         setUpMapIfNeeded();
-        locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
         
-        //Si le GPS est disponible, on s'y abonne
-        if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            abonnementGPS();
-        }
+       gMap.setOnMapLongClickListener(new OnMapLongClickListener() {
+    	    public void onMapLongClick(LatLng point) {
+    	    	// Setting the position for the marker
+    	        markerOptions.position(point);
+
+                AlertDialog.Builder alert = new AlertDialog.Builder(context);
+
+                alert.setTitle("Description de la photo voulue :");
+
+                // Set an EditText view to get user input 
+                final EditText input = new EditText(context);
+                alert.setView(input);
+
+                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                  setMarker(input.getText().toString()) ;
+                  }
+                });
+
+                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                  public void onClick(DialogInterface dialog, int whichButton) {
+                    // Canceled.
+                  }
+                });
+
+                alert.show();
+ 
+             // Animating to the touched position
+                gMap.animateCamera(CameraUpdateFactory.newLatLng(point));
+                
+    	    }
+    	});
     }
 
+    
+    private void setMarker(String result){
+
+        // Setting the title for the marker.
+        // This will be displayed on taping the marker
+        if (intent != null && intent.getStringExtra(EXTRA_LOGIN) != null) 
+            markerOptions.title(intent.getStringExtra(EXTRA_LOGIN));
+        else
+        	markerOptions.title("Unregistered User (developpement)") ;
+        markerOptions.snippet(result) ;
+        
+        // Clears the previously touched position
+        gMap.clear();
+
+        // Placing a marker on the touched position
+        gMap.addMarker(markerOptions);
+    }
+    
     @Override
     protected void onResume() {
         super.onResume();
         setUpMapIfNeeded();
-        locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
-        
-        //Si le GPS est disponible, on s'y abonne
-        if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            abonnementGPS();
-        }
     }
 
     private void setUpMapIfNeeded() {
@@ -62,60 +106,6 @@ public class MapActivity extends android.support.v4.app.FragmentActivity impleme
             gMap.setMyLocationEnabled(true);
         }
     }
-
- 
-    public void onPause() {
-        super.onPause();
- 
-        //On appelle la méthode pour se désabonner
-        desabonnementGPS();
-    }
- 
-    /**
-     * Méthode permettant de s'abonner à la localisation par GPS.
-     */
-    public void abonnementGPS() {
-        //On s'abonne
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, this);
-    }
- 
-    /**
-     * Méthode permettant de se désabonner de la localisation par GPS.
-     */
-    public void desabonnementGPS() {
-        //Si le GPS est disponible, on s'y abonne
-        locationManager.removeUpdates(this);
-    }
- 
-    public void onLocationChanged(final Location location) {
-        //On affiche dans un Toat la nouvelle Localisation
-        final StringBuilder msg = new StringBuilder("lat : ");
-        msg.append(location.getLatitude());
-        msg.append( "; lng : ");
-        msg.append(location.getLongitude());
- 
-        Toast.makeText(this, msg.toString(), Toast.LENGTH_SHORT).show();
- 
-        //Mise à jour des coordonnées
-        final LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());      
-        gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
-        marker.setPosition(latLng);
-    }
- 
-    public void onProviderDisabled(final String provider) {
-        //Si le GPS est désactivé on se désabonne
-        if("gps".equals(provider)) {
-            desabonnementGPS();
-        }       
-    }
- 
-
-    public void onProviderEnabled(final String provider) {
-        //Si le GPS est activé on s'abonne
-        if("gps".equals(provider)) {
-            abonnementGPS();
-        }
-    }
- 
-    public void onStatusChanged(final String provider, final int status, final Bundle extras) { }
+    
+    
 }
