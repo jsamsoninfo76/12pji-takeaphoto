@@ -14,4 +14,3 @@ Ce wiki regroupe les informations permettant d'utiliser google map sur un télé
   * http://www.tutos-android.com/ajouter-marqueurs-item-poi-google-map-android
   * https://docs.google.com/document/pub?id=19nQzvKP-CVLd7_VrpwnHfl-AE9fjbJySowONZZtNHzw
   * https://developers.google.com/maps/documentation/android/intro#sample_code
-  * http://blog.pascal-martin.fr/post/4-Google-Maps-Marqueurs-fenetres-informations
