@@ -11,8 +11,10 @@ import android.widget.EditText;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
+import com.google.android.gms.maps.GoogleMap.OnMarkerDragListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
@@ -21,7 +23,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
  * Notice how we deal with the possibility that the Google Play services APK is not
  * installed/enabled/updated on a user's device.
  */
-public class MapActivity extends android.support.v4.app.FragmentActivity {
+public class MapActivity extends android.support.v4.app.FragmentActivity implements OnMarkerDragListener {
     /**
      * Note that this may be null if the Google Play services APK is not available.
      */
@@ -71,6 +73,8 @@ public class MapActivity extends android.support.v4.app.FragmentActivity {
                 
     	    }
     	});
+       
+       gMap.setOnMarkerDragListener(this) ;
     }
 
     
@@ -84,6 +88,7 @@ public class MapActivity extends android.support.v4.app.FragmentActivity {
         	markerOptions.title("Unregistered User (developpement)") ;
         markerOptions.snippet(result) ;
         
+        markerOptions.draggable(true) ;
         // Clears the previously touched position
         gMap.clear();
 
@@ -106,6 +111,14 @@ public class MapActivity extends android.support.v4.app.FragmentActivity {
             gMap.setMyLocationEnabled(true);
         }
     }
-    
-    
+
+
+	@Override
+	public void onMarkerDrag(Marker marker) {}
+
+	@Override
+	public void onMarkerDragEnd(Marker marker) {}
+
+	@Override
+	public void onMarkerDragStart(Marker marker) {}
 }
