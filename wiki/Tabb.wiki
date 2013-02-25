@@ -1,4 +1,5 @@
 #summary Tabbed App
+#labels Android,Tabbed
 
 = Introduction =
 
@@ -9,3 +10,5 @@
 = Links =
 
   * http://www.androidhive.info/2011/08/android-tab-layout-tutorial/
+  * http://www.android-dev.fr/web/blog/voir/129?titre=Tab-Android-premi%C3%A8re-version-Partie-1-XML&PHPSESSID=5kcdkd8fp5tdulltc2793kv0c3
+  * http://www.android-dev.fr/web/blog/voir/130?titre=Tab-Android-premi%C3%A8re-version-Partie-2-JAVA&PHPSESSID=5kcdkd8fp5tdulltc2793kv0c3
