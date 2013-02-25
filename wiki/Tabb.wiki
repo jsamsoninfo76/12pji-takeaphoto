@@ -14,3 +14,4 @@ Android 3.0, or Honeycomb, came with some fundamental user interface changes, mo
   * http://www.android-dev.fr/web/blog/voir/129?titre=Tab-Android-premi%C3%A8re-version-Partie-1-XML&PHPSESSID=5kcdkd8fp5tdulltc2793kv0c3
   * http://www.android-dev.fr/web/blog/voir/130?titre=Tab-Android-premi%C3%A8re-version-Partie-2-JAVA&PHPSESSID=5kcdkd8fp5tdulltc2793kv0c3
   * http://mobile.tutsplus.com/tutorials/android/android-sdk_fragments/
+  * http://www.lucazanini.eu/2012/android/tab-layout-in-android-with-actionbar-and-fragment/?lang=en
