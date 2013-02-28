@@ -12,4 +12,6 @@
 	<string name="hint_pass">"Ici : Le mot de passe de l'utilisateur"</string>
 	<string name="email_format_error">"Le champs email ne correspond pas au format d'une adresse mail"</string>
 	<string name="email_or_password_empty">"L'adresse email et mot de passe sont obligatoires"</string>
+	<string name="menu_save">"Valider la demande"</string>
+	<string name="menu_search">"Recherche"</string>
 </resources>

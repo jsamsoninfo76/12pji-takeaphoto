@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -55,9 +57,9 @@ public class MapActivity extends android.support.v4.app.FragmentActivity impleme
                 alert.setView(input);
 
                 alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                  setMarker(input.getText().toString()) ;
-                  }
+	                public void onClick(DialogInterface dialog, int whichButton) {
+	                  setMarker(input.getText().toString()) ;
+	                  }
                 });
 
                 alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -87,7 +89,7 @@ public class MapActivity extends android.support.v4.app.FragmentActivity impleme
         else
         	markerOptions.title("Unregistered User (developpement)") ;
         markerOptions.snippet(result) ;
-        
+     
         markerOptions.draggable(true) ;
         // Clears the previously touched position
         gMap.clear();
@@ -112,7 +114,57 @@ public class MapActivity extends android.support.v4.app.FragmentActivity impleme
         }
     }
 
+    @Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.menu_map, menu);
+		return true;
+	}
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	switch (item.getItemId()) {
+    	case R.id.menu_save:
+    		String desc = markerOptions.getSnippet() ;
+    		AlertDialog.Builder alert = new AlertDialog.Builder(context);
+    		
+    		if(desc != null){
+    			alert.setTitle("Voulez-vous vraiment valider cette demande ?");
 
+                alert.setMessage("Description : \n" + markerOptions.getSnippet()) ;
+                
+                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                    
+                      }
+                });
+
+                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                  public void onClick(DialogInterface dialog, int whichButton) {
+                    // Canceled.
+                  }
+                });
+    		}
+    		else{
+    			alert.setTitle("Erreur");
+    			alert.setMessage("Vous devez d'abord poser un marqueur et lui ajouter une description") ;
+    			 alert.setNeutralButton ( "OK" , new DialogInterface.OnClickListener () {
+    				 	public void  onClick (DialogInterface dialog, int whichButton) {
+    				 		
+    				 	}
+    			 });
+    		}
+    		
+            alert.show();
+    		return true;
+    		
+    	case R.id.menu_search:
+    		// Comportement du bouton "rechercher"
+    		return true;
+    	default:
+    		return super.onOptionsItemSelected(item);
+    	}
+    }
+    
 	@Override
 	public void onMarkerDrag(Marker marker) {}
 
