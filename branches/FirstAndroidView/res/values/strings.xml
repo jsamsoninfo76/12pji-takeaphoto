@@ -14,4 +14,8 @@
 	<string name="email_or_password_empty">"L'adresse email et mot de passe sont obligatoires"</string>
 	<string name="menu_save">"Valider la demande"</string>
 	<string name="menu_search">"Recherche"</string>
+	<string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="action_settings">Parametres</string>
 </resources>

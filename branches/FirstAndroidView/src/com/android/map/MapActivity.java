@@ -6,10 +6,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
@@ -164,6 +166,14 @@ public class MapActivity extends android.support.v4.app.FragmentActivity impleme
     		return super.onOptionsItemSelected(item);
     	}
     }
+    
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                Bundle savedInstanceState) {
+
+		View myFragmentView = inflater.inflate(R.layout.activity_map, container, false);
+		return myFragmentView;
+        }
+
     
 	@Override
 	public void onMarkerDrag(Marker marker) {}

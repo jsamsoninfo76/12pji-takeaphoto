@@ -33,7 +33,10 @@
             </intent-filter>
         </activity>
         
-
+        <activity
+            android:name=".Login"
+            android:label="@string/title_activity_login_display" />
+        
         <activity
             android:name=".MapActivity"
             android:label="@string/title_activity_login_display" />
