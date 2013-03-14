@@ -6,12 +6,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
@@ -27,60 +27,30 @@ import com.google.android.gms.maps.model.MarkerOptions;
  * Notice how we deal with the possibility that the Google Play services APK is not
  * installed/enabled/updated on a user's device.
  */
-public class MapActivity extends android.support.v4.app.FragmentActivity implements OnMarkerDragListener {
+public class MapActivity extends Fragment implements OnMarkerDragListener {
     /**
      * Note that this may be null if the Google Play services APK is not available.
      */
     private GoogleMap gMap;
-    private Intent intent ;
-    final Context context = this ;
+    private Intent intent  ;
+    private Context context ;
     final String EXTRA_LOGIN = "user_login";
     MarkerOptions markerOptions = new MarkerOptions();
     
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map);
-        intent = getIntent();
-
-        setUpMapIfNeeded();
         
-       gMap.setOnMapLongClickListener(new OnMapLongClickListener() {
-    	    public void onMapLongClick(LatLng point) {
-    	    	// Setting the position for the marker
-    	        markerOptions.position(point);
-
-                AlertDialog.Builder alert = new AlertDialog.Builder(context);
-
-                alert.setTitle("Description de la photo voulue :");
-
-                // Set an EditText view to get user input 
-                final EditText input = new EditText(context);
-                alert.setView(input);
-
-                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-	                public void onClick(DialogInterface dialog, int whichButton) {
-	                  setMarker(input.getText().toString()) ;
-	                  }
-                });
-
-                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                  public void onClick(DialogInterface dialog, int whichButton) {
-                    // Canceled.
-                  }
-                });
-
-                alert.show();
- 
-             // Animating to the touched position
-                gMap.animateCamera(CameraUpdateFactory.newLatLng(point));
-                
-    	    }
-    	});
-       
-       gMap.setOnMarkerDragListener(this) ;
+       intent = this.getActivity().getIntent() ;    
     }
 
+    public void setContext(Context context){
+    	this.context=context ;
+    }
+    
+    public void setIntent(Intent intent){
+    	this.intent =intent ;
+    }
     
     private void setMarker(String result){
 
@@ -101,7 +71,7 @@ public class MapActivity extends android.support.v4.app.FragmentActivity impleme
     }
     
     @Override
-    protected void onResume() {
+	public void onResume() {
         super.onResume();
         setUpMapIfNeeded();
     }
@@ -110,14 +80,50 @@ public class MapActivity extends android.support.v4.app.FragmentActivity impleme
         // Do a null check to confirm that we have not already instantiated the map.
         if (gMap == null) {
             // Try to obtain the map from the SupportMapFragment.
-            gMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
+            gMap = ((SupportMapFragment) getFragmentManager().findFragmentById(R.id.map))
                     .getMap();
             gMap.setMyLocationEnabled(true);
+            gMap.setOnMarkerDragListener(this) ;
+            
+            gMap.setOnMapLongClickListener(new OnMapLongClickListener() {
+        	    public void onMapLongClick(LatLng point) {
+        	    	// Setting the position for the marker
+        	        markerOptions.position(point);
+
+        	        
+                   AlertDialog.Builder alert = new AlertDialog.Builder(context);
+
+                    alert.setTitle("Description de la photo voulue :");
+
+                    // Set an EditText view to get user input 
+                    final EditText input = new EditText(context);
+                    alert.setView(input);
+
+                    alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+    	                public void onClick(DialogInterface dialog, int whichButton) {
+    	                  setMarker(input.getText().toString()) ;
+    	                  }
+                    });
+
+                    alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                      public void onClick(DialogInterface dialog, int whichButton) {
+                        // Canceled.
+                      }
+                    });
+
+                    alert.show();
+     
+                 // Animating to the touched position
+                  
+                  
+                    gMap.animateCamera(CameraUpdateFactory.newLatLng(point));
+                    
+        	    }
+        	});
         }
     }
 
-    @Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+  /*  public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.menu_map, menu);
 		return true;
 	}
@@ -167,14 +173,14 @@ public class MapActivity extends android.support.v4.app.FragmentActivity impleme
     	}
     }
     
+    */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
 
 		View myFragmentView = inflater.inflate(R.layout.activity_map, container, false);
 		return myFragmentView;
-        }
+    }
 
-    
 	@Override
 	public void onMarkerDrag(Marker marker) {}
 
@@ -183,4 +189,5 @@ public class MapActivity extends android.support.v4.app.FragmentActivity impleme
 
 	@Override
 	public void onMarkerDragStart(Marker marker) {}
+
 }

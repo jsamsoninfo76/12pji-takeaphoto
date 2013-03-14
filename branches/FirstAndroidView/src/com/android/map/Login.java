@@ -62,7 +62,7 @@ public class Login extends Activity {
 				}
 
 				Intent intent = new Intent(Login.this,
-						MapActivity.class);
+						MainActivity.class);
 				intent.putExtra(EXTRA_LOGIN, loginTxt);
 				intent.putExtra(EXTRA_PASSWORD, passTxt);
 				startActivity(intent);
