@@ -6,8 +6,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -27,7 +29,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
  * Notice how we deal with the possibility that the Google Play services APK is not
  * installed/enabled/updated on a user's device.
  */
-public class MapActivity extends Fragment implements OnMarkerDragListener {
+public class MapAdd extends SupportMapFragment implements OnMarkerDragListener {
     /**
      * Note that this may be null if the Google Play services APK is not available.
      */
@@ -40,8 +42,7 @@ public class MapActivity extends Fragment implements OnMarkerDragListener {
     @Override
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
-       intent = this.getActivity().getIntent() ;    
+        setHasOptionsMenu(true);
     }
 
     public void setContext(Context context){
@@ -80,8 +81,7 @@ public class MapActivity extends Fragment implements OnMarkerDragListener {
         // Do a null check to confirm that we have not already instantiated the map.
         if (gMap == null) {
             // Try to obtain the map from the SupportMapFragment.
-            gMap = ((SupportMapFragment) getFragmentManager().findFragmentById(R.id.map))
-                    .getMap();
+            gMap = getMap();
             gMap.setMyLocationEnabled(true);
             gMap.setOnMarkerDragListener(this) ;
             
@@ -123,10 +123,12 @@ public class MapActivity extends Fragment implements OnMarkerDragListener {
         }
     }
 
-  /*  public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.menu_map, menu);
-		return true;
-	}
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // TODO Add your menu entries here
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.map_add, menu) ;
+    }
+
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -173,11 +175,13 @@ public class MapActivity extends Fragment implements OnMarkerDragListener {
     	}
     }
     
-    */
+    
+    
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
-
-		View myFragmentView = inflater.inflate(R.layout.activity_map, container, false);
+    	
+    	View myFragmentView = super.onCreateView(inflater, container, savedInstanceState) ;
+		
 		return myFragmentView;
     }
 

@@ -72,7 +72,7 @@ public class Login extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_login, menu);
+		getMenuInflater().inflate(R.menu.login, menu);
 		return true;
 	}
 	

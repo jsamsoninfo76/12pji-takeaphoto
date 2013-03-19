@@ -32,8 +32,11 @@ public class MainActivity extends FragmentActivity implements
 	/**
 	 * The {@link ViewPager} that will host the section contents.
 	 */
-	ViewPager mViewPager;
-	MapActivity map = new MapActivity() ;
+	CustomViewPager mViewPager;
+	MapAdd map = new MapAdd() ;
+	ManagerActivity manager = new ManagerActivity() ;
+	
+	final int NB_ONGLET = 3 ;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +54,7 @@ public class MainActivity extends FragmentActivity implements
 				getSupportFragmentManager());
 
 		// Set up the ViewPager with the sections adapter.
-		mViewPager = (ViewPager) findViewById(R.id.pager);
+		mViewPager = (CustomViewPager) findViewById(R.id.photosViewPager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 
 		// When swiping between different sections, select the corresponding
@@ -75,6 +78,10 @@ public class MainActivity extends FragmentActivity implements
 					.setText(mSectionsPagerAdapter.getPageTitle(i))
 					.setTabListener(this));
 		}
+		
+	
+		mViewPager.setPagingEnabled(false) ;
+		
 	}
 
 	@Override
@@ -116,25 +123,33 @@ public class MainActivity extends FragmentActivity implements
 		
 		@Override
 		public Fragment getItem(int position) {
-			if(position == 0) {
+			
+			Fragment frag = new Fragment() ;
+			
+			switch (position) {
+			case 0:
+				frag = map ;
+				break;
+
+			case 2:
+				frag = manager ;
+				break;
 				
-	            return map ;
-	        }
-	      
-	        else {
-	        	
-				Fragment fragment = new DummySectionFragment();
+			default:
+				frag = new DummySectionFragment();
 				Bundle args = new Bundle();
 				args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
-				fragment.setArguments(args);
-				return fragment;
-	        }
+				frag.setArguments(args);
+				break;
+			}
+			
+			return frag ;
 		}
 
 		@Override
 		public int getCount() {
 			// Show 3 total pages.
-			return 3;
+			return NB_ONGLET;
 		}
 
 		@Override

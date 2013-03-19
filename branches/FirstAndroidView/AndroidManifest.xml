@@ -38,7 +38,7 @@
             android:label="@string/title_activity_main" />
         
         <activity
-            android:name=".MapActivity"
+            android:name=".MapAdd"
             android:label="@string/title_activity_login_display" />
         <meta-data
    			android:name="com.google.android.maps.v2.API_KEY"
