@@ -2,17 +2,11 @@
 
 = Introduction =
 
-Add your content here.
-
+Ce wiki regroupe les informations permettant de mettre en place une base de donnée sur un téléphone android. 
 
 = Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
-
-
+= Liens =
 
 
  *http://goo.gl/VDB7p
