@@ -16,3 +16,4 @@ Android 3.0, or Honeycomb, came with some fundamental user interface changes, mo
   * http://mobile.tutsplus.com/tutorials/android/android-sdk_fragments/
   * http://www.lucazanini.eu/2012/android/tab-layout-in-android-with-actionbar-and-fragment/?lang=en
   * https://github.com/inazaruk/map-fragment
+  * http://stackoverflow.com/questions/12870962/passing-data-on-callback-onlistitemclick-to-a-fragment
