@@ -1,0 +1,9 @@
+#summary Client Serveur
+
+= Introduction =
+
+Connexion client - serveur
+
+= Liens =
+
+  * http://appinventor.blogspot.fr/2011/09/android-mysql-connectivity-via-json.html
