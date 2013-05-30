@@ -1,28 +1,47 @@
-<resources>
-    <string name="app_name">Take A Photo For Me</string>
-    <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">Take A Photo For Me</string>
-    <string name="create_account">Créer un compte</string>
-    <string name="email">Adresse email</string>
-    <string name="password">Mot de passe</string>
-    <string name="connect">Se connecter</string>
-    <string name="title_activity_display">Take A Photo For Me</string>
-	<string name="email_format_error">"Le champs email ne correspond pas au format d'une adresse mail"</string>
-	<string name="email_or_password_empty">"L'adresse email et mot de passe sont obligatoires"</string>
-	<string name="different_password">Les deux mots de passe doivent être identiques</string>
-	<string name="login_exist">Ce login existe déjà</string>
-	<string name="login_min">La taille minimun du login est de 4 caractères</string>
-	<string name="pass_min">La taille minimun du mote de passe est de 4 caractères</string>
-	<string name="menu_save">Valider la demande</string>
-	<string name="menu_refresh">Rafraichir</string>
-	<string name="title_section1">Faire une demande</string>
-    <string name="title_section2">Voir les demandes</string>
-    <string name="title_section3">Gérer mes demandes</string>
-    <string name="action_settings">Parametres</string>
-    <string name="textview">TextView</string>
-    <string name="capture">Prendre la photo</string>
-    <string name="erreur_connextion">"Erreur de connexion au serveur, vérifier vôtre connexion puis réessayer"</string>
-    <string name="erreur_current_user">"Erreur Utilisateur Courant"</string>  
-    <string name="zoomInf">"-"</string>
-    <string name="zoomSup">"+"</string>     
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Title of confirmation dialog informing user that they need to install
+        Google Play services (from Play Store) [CHAR LIMIT=40] -->
+    <string name="common_google_play_services_install_title" msgid="7215213145546190223">Get Google Play services</string>
+
+    <!-- (For phones) Message in confirmation dialog informing user that
+        they need to install Google Play services (from Play Store) [CHAR LIMIT=NONE] -->
+    <string name="common_google_play_services_install_text_phone" msgid="2122112764540849864">This app won\'t run without Google Play services, which are missing from your phone.</string>
+
+    <!-- (For tablets) Message in confirmation dialog informing user that
+        they need to install Google Play services (from Play Store) [CHAR LIMIT=NONE] -->
+    <string name="common_google_play_services_install_text_tablet" msgid="7351599665250191022">This app won\'t run without Google Play services, which are missing from your tablet.</string>
+
+    <!-- Button in confirmation dialog for installing Google Play services [CHAR LIMIT=30] -->
+    <string name="common_google_play_services_install_button" msgid="7153882981874058840">Get Google Play services</string>
+
+    <!-- Title of confirmation dialog informing user they need to enable
+        Google Play services in application settings [CHAR LIMIT=40] -->
+    <string name="common_google_play_services_enable_title" msgid="5122002158466380389">Enable Google Play services</string>
+
+    <!-- Message in confirmation dialog informing user they need to enable
+        Google Play services in application settings [CHAR LIMIT=NONE] -->
+    <string name="common_google_play_services_enable_text" msgid="227660514972886228">This app won\'t work unless you enable Google Play services.</string>
+
+    <!-- Button in confirmation dialog to enable Google Play services.  Clicking it
+        will direct user to application settings of Google Play services where they
+        can enable it [CHAR LIMIT=30] -->
+    <string name="common_google_play_services_enable_button" msgid="2523291102206661146">Enable Google Play services</string>
+
+    <!-- Title of confirmation dialog informing user that they need to update
+        Google Play services (from Play Store) [CHAR LIMIT=40] -->
+    <string name="common_google_play_services_update_title" msgid="1788179980625863495">Update Google Play services</string>
+
+    <!-- Message in confirmation dialog informing user that they need to update
+        Google Play services (from Play Store) [CHAR LIMIT=NONE] -->
+    <string name="common_google_play_services_update_text" msgid="9053896323427875356">This app won\'t run unless you update Google Play services.</string>
+
+    <!-- Message in confirmation dialog informing user there is an unknow issue in Google Player
+        services [CHAR LIMIT=NONE] -->
+    <string name="common_google_play_services_unknown_issue">Unknown issue with Google Play services.</string>
+
+    <!-- Button in confirmation dialog for updating Google Play services [CHAR LIMIT=20] -->
+    <string name="common_google_play_services_update_button" msgid="6556509956452265614">Update</string>
+
 </resources>
