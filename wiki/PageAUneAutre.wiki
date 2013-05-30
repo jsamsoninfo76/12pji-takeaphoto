@@ -1,9 +1,0 @@
-#summary Passage d'une page a une autre
-
-= Introduction =
-
-= Details =
-
-= Liens = 
-
-  * http://www.tutos-android.com/changement-vues-passage-donnees-android
